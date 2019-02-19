@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<base href="https://lyricsbd.github.io/player/" />
+<style type="text/css">*{margin:0;padding:0}#myvideo{position:absolute;width:100%!important;height:100%!important}</style>
+<script type="text/javascript" src="jwplayer-7.12.0/css/bootstrap-button.js"></script>
+<script type="text/javascript" src="jwplayer-7.12.0/css/bootstrap-toggle.v2.2.0.js"></script>
+<script type="text/javascript" src="jwplayer-7.12.0/css/data-log-1.0.0.js"></script>
+<link rel="stylesheet" type="text/css" href="jwplayer-7.12.0/css/nhac-all-4.0.0.css" />
+<script type="text/javascript" src="jwplayer-7.12.0/jwplayer.js"></script>
+</head>
+ <body>
+ <script>
+function getParam ( sname )
+{
+  var params = location.search.substr(location.search.indexOf("?")+1);
+  var sval =  params.replace("sv=", "");
+  
+  return sval;
+}
+var sv = getParam("sv");
+</script>
+<script>
+  var responseText = ''+sv+'';
+  urlArry = responseText.split(',');
+  start = true;
+  num_of_urlArry = urlArry.length;
+  index_of_urlArry = 0;
+</script>
+
+<div id="myalbum-player"></div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+
+jwplayer.key="YgtWotBOi+JsQi+stgRlQ3SK21W2vbKi/K2V86kVbwU=";
+
+        jwplayer('myalbum-player').setup({
+            width: '100%',
+            height: '300',
+            base:'https://lyricsbd.github.io/player/jwplayer-7.12.0/',
+            stretching: 'fill',
+            thumb : 'http://mlive.pro/uploads/ images-album/47-1529148193.jpg',
+            playlist: [{"sources":[{"file":""+sv+"","label":"HD"}],
+            "image":"https://i.pinimg.com/originals/d6/68/ab/d668abc72809303852c27275e6a56775.gif",
+            "thumb":"https://109cdf7de.vws.vegacdn.vn/kv0puCNE4oNNfn7YhOpK/1547805125/v1/album/s2/0/19/138/20064826.jpg",
+            "mediaid":"EZEFZ69",
+            "media_title":"Gọi Tên Em Trong Đêm Cover",
+            "media_desc":"Hoa Vinh",
+            "title":"",
+            "link":"",
+            "tracks":[{"file":"","thumb":"http://mlive.pro/uploads/images-album/47-1529148193.jpg","kind":"captions","label":"L\u1eddi Karaoke","default":true}],
+            "lyrics":""},],            
+            
+            skin: {
+                name: 'nhac'
+            },            
+            timeSliderAbove: true,
+            autostart: true,
+            repeat: true,
+            plugins: {
+                'https://lyricsbd.github.io/player/jwplayer-7.12.0/css/nhac-album-4.0.0.min.js': {
+                    resounded: true,          //false true,  default false
+                    showAutoNext: true,
+                        performance: true,          //false true,  default true
+                        perform_debug: false,        //false true,  default false
+                        duration: 20,  
+                        user_id: '5698769',
+                        vega_id: '21897841',
+                        msisdn: '',
+                        package_id: 0,
+                        album_id : 'EZEFZ68',
+                        content_type: 'song', 
+                        utm_source: '', 
+                        utm_medium: '', 
+                        utm_term: '', 
+                        utm_content: '', 
+                        utm_campaign: '', 
+                        device_id: '', 
+                        channel: 'WEB', 
+                        session_id: '83huqf02etj9cf58q01mghaqu0',
+                        url_referer: '',
+                        action_type: 'play_album',
+                        player_type: 'NotDRM',
+                        service_id: 0, 
+                        source_rec: 'next',  
+                        listen_state: 'online', 
+                        other_info: '', 
+                        expired_time: 0, 
+                        version: '1.0' 
+                }
+            }
+        });
+
+        function playThis(index) {
+                jwplayer().playlistItem(index);
+        };
+
+                var device_type = 'desktop';
+                var listPlayed =Array();
+                var logPlayAlbumFlag = true;
+                var logSongFlag = true;
+                var embed= false;
+                var isFirst = true;
+                var index_st = '0';
+                var firstPause = false;
+                var userStatus = 1;
+    //jwplayer().setMute(false);
+    
+          //jwplayer().setMute(false);
+                /*jwplayer().onPlaylistItem(function(evt) {
+                    logSongFlag = true;
+                    var currentItem = jwplayer().getPlaylistItem();
+                    itemId = currentItem.mediaid;
+                    hashdis = new Hashids(has_key);
+                    id = hashdis.encode(parseInt(itemId));
+                    songId = 'so'+id;
+                    //history.replaceState({}, '', '?st='+songId);
+                    var uri = location.href;
+                    if(uri.indexOf('?')>0 && embed){
+                        history.replaceState({}, '', '?embed=1&st='+songId);
+                    }else{
+                        history.replaceState({}, '', '?st='+songId);
+                    }
+                    if(evt.index == 0 && evt.index != index_st) return;
+
+                    /*var isiPad = (navigator.userAgent.match(/iPad/i) != null);
+                    if(!isFirst && !isiPad && embed==false){
+                        jwplayer().stop();
+                        jwplayer().setMute(true);
+                        window.location.reload();
+                        return;
+                    }*/
+                    /*var playlistIndex = jwplayer().getPlaylistIndex();
+                    if(typeof scrollToY=='function'){
+                        scrollToY(playlistIndex);
+                    }*/
+                //})*/
+                jwplayer().onPause(function(){
+                    var currentItem = jwplayer().getPlaylistItem();
+                    itemId = currentItem.mediaid;
+                    $('.mlive-player ul li.item').removeClass('playing');
+                    $('.mlive-player #song_'+itemId).addClass('onpause');
+                });
+                jwplayer().onBeforePlay(function() {
+                    var currentItem = jwplayer().getPlaylistItem();
+                    itemId = currentItem.mediaid;
+           //var now = Math.floor(Date.now() / 1000);
+           var now = '1550391773';
+          
+           if(currentItem.active_from > now){
+            var curentIndex = jwplayer().getPlaylistIndex();
+                        var totalItem = jwplayer().getPlaylist().length;
+                        if(curentIndex<totalItem){
+                            nextItem = curentIndex+1;
+                        }else{
+                            nextItem = 0;
+                        }
+                        jwplayer().playlistItem(nextItem); 
+        }
+                    jwplayer().onComplete(function() {
+            var curentIndex = jwplayer().getPlaylistIndex();
+                        var totalItem = jwplayer().getPlaylist().length;
+      if (curentIndex< (totalItem-1))
+      {
+       //alert('Xong một bài!');
+      } else {
+       MLiveAutoPlay();
+      }
+     });
+                    loadLyrics(itemId);
+                    var playlistIndex = jwplayer().getPlaylistIndex();
+                    if(typeof scrollToY=='function'){
+                        scrollToY(playlistIndex);
+                    }
+     $('#playlist').scrollTo("#song_"+itemId, 'slow');
+                    $('.mlive-player ul li.item').removeClass('onpause');
+                    $('.mlive-player ul li.item').removeClass('playing');
+                    $('.mlive-player #song_'+itemId).addClass('playing');
+                });
+                jwplayer().onBeforeComplete(function() {
+                    if(isFirst){
+                        isFirst = false;
+                    }
+     // Chuyen trang sang trang khac neu khong auto
+                console.log('complete');
+                if(logPlayAudioFlag == false && typeof MLiveAutoPlay=='function'){
+                    console.log('call MLiveAutoPlay');
+                    MLiveAutoPlay();
+                }
+                });
+                jwplayer().onQualityLevels(function(event){
+                    console.log('onQualityLevels',event.currentQuality);
+                    var bitrateIndex = event.currentQuality;
+                    var currQL = jwplayer().getQualityLevels();
+                    var qualityObj = currQL[bitrateIndex];
+                    if(userStatus==0){
+                        if(qualityObj.label!='128K'){
+                            for(var i=0; i<currQL.length;i++){
+                                if(currQL[i].label=='128K'){
+                                    console.log('set ',i);
+                                    jwplayer().setCurrentQuality(i);
+                                }
+                            }
+                        }
+                    }else{
+                        for(var i=0; i<currQL.length;i++){
+                            if(currQL[i].label=='320K'){
+                                console.log('set ',i);
+                                jwplayer().setCurrentQuality(i);
+                            }
+                        }
+                    }
+                });
+                jwplayer().onQualityChange(function(event){
+                    console.log('onQualityChange',event.currentQuality);
+                    var setQuality = false;
+                    var currEQIndex = jwplayer().getCurrentQuality();
+                    var currQL = jwplayer().getQualityLevels();
+                    var bitrate = currQL[currEQIndex].label;
+                    bitrate = parseInt(bitrate);
+                    var defaultProfile = '128K';
+                    if(userStatus==0 && bitrate==320){
+                        //NhacVnCoreJs.popupLoginVegaId();
+                        var isSetDf = false;
+                        for(var i=0; i<currQL.length;i++){
+                            if(!isSetDf){
+                                if(currQL[i].label=='128K'){
+                                    defaultProfile='128K';
+                                    isSetDf=true;
+                                }
+                            }
+                        }
+                        //console.log('set pr:',defaultProfile);
+                        if(defaultProfile!='' && setQuality==false){
+                            for(var i=0; i<currQL.length;i++){
+                                if(currQL[i].label==defaultProfile && currEQIndex!=i){
+                                    jwplayer().setCurrentQuality(i);
+                                    setQuality=true;
+                                }
+                            }
+                        }
+                    }
+                })
+  
+                jwplayer().onTime(function(event) {
+                    if(firstPause==false && embed==true){
+                        firstPause = true;
+                        jwplayer().pause();
+                    }
+                    var currentItem = jwplayer().getPlaylistItem();
+     //var now = Math.floor(Date.now() / 1000);
+                    var now = '1550391773';
+                    if(currentItem.active_from > now){
+                        jwplayer().pause();
+                    }
+                    
+                    if(Math.round(event.position) >=5){
+                        if(logPlayAlbumFlag) {
+                            logPlayAlbumFlag = false;
+                            var action = 'Play Album';
+                            if(in_array(listPlayed,'album_'+EZEFZ68)){
+                                var action = 'Replay Album';
+                            }
+                            var item = {id:'album_EZEFZ68'};
+                            if(!in_array(listPlayed,item.id)){
+                                listPlayed.push(item);
+                            }
+                            //ajax_load('/player/logAlbum',{'id':EZEFZ68});
+                            
+                        }
+                        if(logSongFlag){
+                            logSongFlag = false;
+                            var currentItem = jwplayer().getPlaylistItem();
+                            itemId = currentItem.mediaid;
+                            itemTitle = currentItem.media_title;
+                            itemDesc = currentItem.media_desc;
+                            var action = 'Play Song';
+       if(in_array(listPlayed,'song_'+itemId)){
+        var action = 'Replay Song';
+       }
+       var item = {id:'song_'+itemId};
+                            if(!in_array(listPlayed,item.id)){
+                                listPlayed.push(item);
+                            }
+                            //ajax_load('/player/logSong',{'id':itemId,'album_id':EZEFZ68});
+                            console.log(device_type+'-'+action+'|'+itemId+'|'+itemTitle+'|'+itemDesc);
+       ga('send', 'event', device_type, action, itemTitle+'-'+itemDesc+'-'+itemId);
+                            //var eventLabel = itemTitle+'-'+itemDesc+'-'+itemId;
+                            //NhacVnCoreJs.gaTrackingEvents('Play By Content',action,eventLabel);
+                        }
+                    }
+
+       })
+       var isFallback = '';
+       jwplayer().onError(function(event){
+           isFirst = true;
+                    console.log('onError:'+event.message);
+                    var currentItem = jwplayer().getPlaylistItem();
+                    var fileCurrent = currentItem.file;
+                    var isFcurr = 'EZEFZ68'+fileCurrent;
+
+                    if(isFallback!=isFcurr){
+                        var ref = document.referrer;
+                    }
+                    var playlist = jwplayer().getPlaylist();
+                    var playlistIndex = jwplayer().getPlaylistIndex();
+
+                    /*if(isFallback!=isFcurr){
+                        isFallback = isFcurr;
+                        var linkFallback = fileCurrent.replace('music.vegacdn.vn','media.nhac.vn');
+                        playlist[playlistIndex].file = linkFallback;
+                        playlist[playlistIndex].sources[0].file = linkFallback;
+                        jwplayer().load(playlist);
+                        jwplayer().playlistItem(playlistIndex);
+                    }else{
+                        var curentIndex = jwplayer().getPlaylistIndex();
+                        var totalItem = jwplayer().getPlaylist().length;
+                        if(curentIndex<totalItem){
+                            nextItem = curentIndex+1;
+                        }else{
+                            nextItem = 0;
+                        }
+                        jwplayer().playlistItem(nextItem);
+                    }*/
+                })
+                setInterval(function(){
+                    var state = jwplayer().getState();
+                    if(state=='PLAYING'){
+                        if(typeof jwplayer().getPlaylistItem() =='object'){
+                            var currentItem = jwplayer().getPlaylistItem();
+                            itemId = currentItem.mediaid;
+                            //ajax_load('/player/logPlayEverytime',{'content_id':itemId,'album_id':EZEFZ68});
+                        }
+                    }
+                }, 60000);
+   
+/*]]>*/
+</script>
+
+ </body>
+</html>
+
+
+
+
+
