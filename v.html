@@ -1,0 +1,166 @@
+
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  
+ 
+
+  <script type="text/javascript" src="https://lyricsbd.github.io/player/jwplayer-7.12.0/jquery-1.11.3.min.js"></script>
+   
+     
+   
+  <body>
+ 
+
+                    <div class="video_player">
+
+<script type="text/javascript" src="https://lyricsbd.github.io/player/jwplayer-7.12.0/css/bootstrap-button.js"></script>
+<script type="text/javascript" src="https://lyricsbd.github.io/player/jwplayer-7.12.0/css/bootstrap-toggle.v2.2.0.js"></script>
+   <script type="text/javascript" src="https://lyricsbd.github.io/player/jwplayer-7.12.0/css/data-log-1.0.0.js"></script>
+<link rel="stylesheet" type="text/css" href="https://lyricsbd.github.io/player/jwplayer-7.12.0/css/nhac-all-4.0.0.css" />
+<script type="text/javascript" src="https://lyricsbd.github.io/player/jwplayer-7.12.0/jwplayer.js"></script>
+
+<script>
+function getParam ( sname )
+{
+  var params = location.search.substr(location.search.indexOf("?")+1);
+  var sval =  params.replace("sv=", "");
+  
+  return sval;
+}
+var sv = getParam("sv");
+
+</script>
+<script>
+  var responseText = ''+sv+'';
+  urlArry = responseText.split(',');
+  start = true;
+  num_of_urlArry = urlArry.length;
+  index_of_urlArry = 0;
+</script>
+
+ 
+
+
+<div id="myvideo" ></div>
+<script type="text/javascript">
+jwplayer.key="YgtWotBOi+JsQi+stgRlQ3SK21W2vbKi/K2V86kVbwU="
+/*<![CDATA[*/
+            var embed = 0;
+            var firstPause = false;
+            var wdoc = $(window).width();
+            var hplayer = 473;
+            if(wdoc<1153 && embed!=1){
+                hplayer = 316;
+            }
+            console.log('wdoc:'+wdoc);
+            jwplayer('myvideo').setup({
+                width: '100%',
+                         height: hplayer,
+                file: '"+sv+"',
+       image: 'https://media3.giphy.com/media/4crh6YDxGvHNK/giphy.gif',
+                             tracks: [{
+        file: '',
+        label: 'Lrc',
+        kind: 'captions',
+        'default': true
+    }],
+                base: 'https://lyricsbd.github.io/player/jwplayer-7.12.0/',
+                androidhls: 'true',
+                skin: {
+                    name: 'nhac'
+                },
+                            timeSliderAbove: true,
+                            qualityLabels: {
+                                '2100':'1080p',
+                                '1600':'720p',
+                                '1100':'480p',
+                                '800':'360p',
+                                '500':'240p'
+                            },
+                plugins: {
+                    'https://lyricsbd.github.io/player/jwplayer-7.12.0/css/nhac-video-3.0.1.min.js': {
+                      showVIP: false,
+                            showVIP: 1,
+                            showVIP: 2,
+                                  showAutoNext: true,
+                                   performance: true,          //false true,  default true
+                                    perform_debug: false,        //false true,  default false
+                    }
+                },
+                autostart: true,
+                            repeat: true,
+                primary: 'html5'
+        });
+
+            // Chuyen trang sang trang khac neu khong auto
+            jwplayer().onBeforeComplete(function() {
+                console.log('complete');
+                if(typeof MLiveAutoPlay=='function'){
+                    console.log('call MLiveAutoPlay');
+                    MLiveAutoPlay();
+                }
+            });
+        
+
+            function onPlayerExpandCollapse() {
+                if(jwplayer('myvideo').getFullscreen) {
+                    jwplayer('myvideo').setFullscreen(false);
+                }
+                var w_window = $(window).width();
+                var h_window = $(window).height();
+                if($('.video_player').width() <= 840){
+                    $('.colum2').css({'margin-top':'0px'});
+                    $('.video_player').css({'height':'540px'});
+                    $('.video_player').css({'width':'950px'});
+                    $('#player-holder').removeClass('watch-normal-mode');
+                    $('#player-holder').addClass('watch-large-mode');
+                    $('.video_player .colum2').css({'margin-top':'-370px'});
+     $('.colum2').css({'padding-top':'0'});
+                    var w=950;
+                    var h=540;
+                    onPlayerExpand(w,h);
+                }else{
+                    var w=840;
+                    var h=419;
+                    if(w_window<1170){
+                        w=605;
+                    }
+                    onPlayerCollapse(w,h);
+                    $('.colum2').css({'margin-top':''});
+     $('.colum2').css({'padding-top':'40px'});
+                    $('.video_player').css({'height':h+'px'});
+                    $('.video_player').css({'width':w+'px'});
+                    $('#player-holder').removeClass('watch-large-mode');
+                    $('#player-holder').addClass('watch-normal-mode');
+                }
+            }
+
+            function onPlayerExpand(w,h) {
+              jwplayer('myvideo').resize(w,h);
+            }
+
+            function onPlayerCollapse(w,h) {
+              jwplayer('myvideo').resize(w,h);
+            }
+            ;
+        
+
+            var device_type = 'desktop';
+            var listPlayed =Array();
+            var playVideoFlag = true;
+            var logedin = true;
+   jwplayer().onBeforePlay(function() {
+    playVideoFlag = true;
+   });
+
+
+/*]]>*/
+</script>
+
+   </div>
+           
+
+ </body>
+</html>
+
